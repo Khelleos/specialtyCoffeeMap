@@ -1,3 +1,6 @@
+import { loadBookmarks } from './firebase.js';
+import { createMarkers } from './map.js'
+
 // Render the UI with the initial state
 function renderUI() {
     // Add code to render UI with the loaded bookmarks data

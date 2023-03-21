@@ -4,7 +4,7 @@ L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
   attribution: "&copy; CartoDB",
 }).addTo(map);
 
-function createMarkers() {
+export function createMarkers() {
   window.bookmarks.forEach((bookmark) => {
     const now = new Date();
     const dayOfWeek = now.getUTCDay(); // 0 = Sunday, 1 = Monday, etc.
