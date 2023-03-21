@@ -1,4 +1,4 @@
-const map = L.map("map").setView([54.352, 18.646], 10);
+const map = L.map("map").setView([54.352, 18.646], 12);
 
 L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
   attribution: "&copy; CartoDB",
@@ -18,12 +18,8 @@ export function createMarkers() {
         </div>
         <div class="popup-status" style="margin-top: 10px; margin-bottom: 10px; color: ${statusColor};">${isOpen ? "Open" : "Closed"}</div>
         <div class="popup-address">${bookmark.address}</div>
-        <a href="https://www.google.com/maps/dir/?api=1&destination=${bookmark.lat},${bookmark.lng}" target="_blank" class="popup-directions">
-          <i class="fas fa-map-marker-alt"></i>
-        </a>
-        <div class="popup-body"></div>
       `;
 
-    L.marker([bookmark.lat, bookmark.lng]).addTo(map).bindPopup(popupContent, { minWidth: 200 });
+    L.marker([bookmark.lat, bookmark.lng]).addTo(map).bindPopup(popupContent, { minWidth: 300 });
   });
 }
