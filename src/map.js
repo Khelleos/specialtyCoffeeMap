@@ -13,13 +13,18 @@ export function createMarkers() {
     const statusColor = isOpen ? "green" : "red";
 
     const popupContent = `
-        <div class="popup-title">
-          <a href="${bookmark.instagramLink}" target="_blank" class="popup-title-text" style="font-size: 20px;">${bookmark.name}</a>
-        </div>
-        <div class="popup-status" style="margin-top: 10px; margin-bottom: 10px; color: ${statusColor};">${isOpen ? "Open" : "Closed"}</div>
-        <div class="popup-address">${bookmark.address}</div>
+    <div class="popup-title">
+      <a href="${bookmark.instagramLink}" target="_blank" class="popup-title-text" style="font-size: 20px;">${bookmark.name}</a>
+    </div>
+    <div class="popup-status" style="margin-top: 10px; margin-bottom: 10px; color: ${statusColor};">${isOpen ? "Open" : "Closed"}</div>
+    <div class="popup-address">${bookmark.address}</div>
       `;
 
-    L.marker([bookmark.lat, bookmark.lng]).addTo(map).bindPopup(popupContent, { minWidth: 300 });
+    const marker = L.marker([bookmark.lat, bookmark.lng]).addTo(map);
+
+    marker.on("click", () => {
+      document.getElementById("popup-content").innerHTML = popupContent;
+      document.getElementById("custom-popup").style.display = "block";
+    });
   });
 }
