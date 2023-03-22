@@ -1,6 +1,11 @@
 package-lock.json
 node_modules/
-dist/bundle.js
+dist/
+.firebase/
 
 bookmarks.json
 .env
+
+!dist/index.html
+firebase.json
+.firebaserc
