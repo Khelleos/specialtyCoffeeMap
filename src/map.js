@@ -1,7 +1,12 @@
-const map = L.map('map').setView([54.352, 18.646], 12);
+import instagramLogo from '../assets/instagram.png';
 
-L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-  attribution: '&copy; CartoDB',
+const logoElement = document.createElement('img');
+logoElement.src = instagramLogo;
+
+const map = L.map("map").setView([54.352, 18.646], 12);
+
+L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
+  attribution: "&copy; CartoDB",
 }).addTo(map);
 
 /**
@@ -17,7 +22,7 @@ export function createMarkers() {
 
     const popupContent = `
             <div class="popup-title">
-                <img src="assets/instagram.png" alt="Instagram" width="20" height="20">
+                <img src="${instagramLogo}" alt="Instagram" width="20" height="20">
                 <a href="${bookmark.instagramLink}" target="_blank" class="popup-title-text" style="font-size: 20px;">${bookmark.name}</a>
             </div>
             <div class="popup-status ${statusClass}">${isOpen ? 'Open' : 'Closed'}</div>

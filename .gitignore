@@ -1,5 +1,6 @@
 package-lock.json
 node_modules/
+dist/bundle.js
 
 bookmarks.json
-src/firebaseConfig.js
+.env

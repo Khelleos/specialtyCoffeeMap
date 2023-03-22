@@ -1,6 +1,8 @@
 import firebaseConfig from './firebaseConfig.js';
 
-firebase.initializeApp(firebaseConfig);
+if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+}
 
 const database = firebase.database();
 const ref = database.ref('bookmarks');

@@ -1,3 +1,4 @@
+import './styles.css';
 import { loadBookmarks } from './firebase.js';
 import { createMarkers } from './map.js';
 
