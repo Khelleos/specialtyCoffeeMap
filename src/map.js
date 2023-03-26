@@ -11,9 +11,12 @@ L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
 
 function isCafeOpen(bookmark) {
   const now = new Date();
-  const dayOfWeek = now.getUTCDay();
-  const hourOfDay = now.getUTCHours();
-  const minuteOfDay = now.getUTCMinutes();
+  const userTimezoneOffset = -now.getTimezoneOffset() * 60 * 1000;
+  const cafeTimezoneOffset = 60 * 60 * 1000; // UTC+01:00 in milliseconds
+  const localTime = new Date(now.getTime() + userTimezoneOffset + cafeTimezoneOffset);
+  const dayOfWeek = localTime.getDay();
+  const hourOfDay = localTime.getHours();
+  const minuteOfDay = localTime.getMinutes();
   const currentWorkingHours = bookmark.workingHours[dayOfWeek];
 
   if (!currentWorkingHours) {
@@ -29,6 +32,7 @@ function isCafeOpen(bookmark) {
 
   return currentTime >= openTime && currentTime < closeTime;
 }
+
 
 export function createMarkers() {
   window.bookmarks.forEach((bookmark) => {
