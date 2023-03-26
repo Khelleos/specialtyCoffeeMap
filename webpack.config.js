@@ -1,5 +1,7 @@
+const webpack = require('webpack');
 const path = require('path');
 const Dotenv = require('dotenv-webpack');
+const GitRevision = require('git-rev-sync');
 
 module.exports = {
   entry: './src/app.js',
@@ -8,7 +10,10 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
   },
   plugins: [
-    new Dotenv()
+    new Dotenv(),
+    new webpack.DefinePlugin({
+      'process.env.VERSION': JSON.stringify(GitRevision.short()),
+    }),
   ],
   devServer: {
     static: {
@@ -21,6 +26,13 @@ module.exports = {
   },
   module: {
     rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+        },
+      },
       {
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
